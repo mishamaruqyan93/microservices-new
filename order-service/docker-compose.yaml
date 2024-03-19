@@ -1,0 +1,22 @@
+version: '3'
+services:
+  order-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9091:8081"
+    depends_on:
+      - mysql_db
+
+  mysql_db:
+    image: mysql
+    container_name: mysql_db
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: product_service
+#    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always

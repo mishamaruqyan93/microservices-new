@@ -1,0 +1,19 @@
+version: '3'
+services:
+  product-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9090:8083"
+
+  mongoDb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: product-service
+    restart: always
